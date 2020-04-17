@@ -1,0 +1,10 @@
+version: '3'
+services:
+  jupyter: 
+    volumes:
+      - .:/myapp
+    working_dir: /myapp
+    ports:
+      - "8888:8888"
+    image: "jupyter/datascience-notebook"
+    container_name: "notebook"
