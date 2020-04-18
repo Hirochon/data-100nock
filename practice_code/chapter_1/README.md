@@ -13,6 +13,8 @@
 - [dtypesでDFのカラム毎で型を出力してくれる](#dtypesでDFのカラム毎で型を出力してくれる)
 - [datetime型への変換→dt.strftimeメソッドを使ったデータ操作](#datetime型への変換→dtstrftimeメソッドを使ったデータ操作)
 - [groupbyを用いてデータをまとめる](#groupbyを用いてデータをまとめる)
+- [groupbyのcolumn2つ参照2つ指定をつかう](#groupbyのcolumn2つ参照2つ指定をつかう)
+- [pivot_tableの偉大さ。難しさ。](#pivot_tableの偉大さ。難しさ。)
 
 ## 気になったとこ詳細リスト
 
@@ -116,4 +118,18 @@
     join_data.groupby("payment_month").sum()["price"]
     ```
 
+### groupbyのcolumn2つ参照2つ指定をつかう
+- groupbyの無限の可能性を感じずにはいられない2*2つ指定
+- 大枠index`payment_month`と小枠index`item_name`のコラボレーション！
 
+    ```python:jupyter
+    join_data.groupby(["payment_month", "item_name"]).sum()[["price", "quantity"]]
+    ```
+
+### pivot_tableの偉大さ。難しさ。
+- 引数として`DF`,`index`,`columns`,`values`,`aggfunc`が必要？
+- データの可視化度がぐいっとあがる代物。やばい(語彙力w)。
+
+    ```python:jupyter.py
+    pd.pivot_table(join_data, index='item_name', columns='payment_month', values=['price', 'quantity'], aggfunc='sum')
+    ```
