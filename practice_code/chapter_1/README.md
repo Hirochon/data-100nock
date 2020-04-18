@@ -14,7 +14,7 @@
 - [datetime型への変換→dt.strftimeメソッドを使ったデータ操作](#datetime型への変換dtstrftimeメソッドを使ったデータ操作)
 - [groupbyを用いてデータをまとめる](#groupbyを用いてデータをまとめる)
 - [groupbyのcolumn2つ参照2つ指定をつかう](#groupbyのcolumn2つ参照2つ指定をつかう)
-- [pivot_tableの偉大さ。難しさ。](#pivot_tableの偉大さ。難しさ。)
+- [pivot_tableの偉大さ。難しさ。](#pivot_tableの偉大さ難しさ)
 
 ## 気になったとこ詳細リスト
 
