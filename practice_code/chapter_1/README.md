@@ -15,6 +15,7 @@
 - [groupbyを用いてデータをまとめる](#groupbyを用いてデータをまとめる)
 - [groupbyのcolumn2つ参照2つ指定をつかう](#groupbyのcolumn2つ参照2つ指定をつかう)
 - [pivot_tableの偉大さ。難しさ。](#pivot_tableの偉大さ難しさ)
+- [matplotlibを使ったデータ推移の可視化](#matplotlibを使ったデータ推移の可視化)
 
 ## 気になったとこ詳細リスト
 
@@ -132,4 +133,20 @@
 
     ```python:jupyter.py
     pd.pivot_table(join_data, index='item_name', columns='payment_month', values=['price', 'quantity'], aggfunc='sum')
+    ```
+
+### matplotlibを使ったデータ推移の可視化
+- 待ってました。matplotlibの登場
+- matplotlibでのグラフの描写は横軸→縦軸の順番で指定する
+- 故に横軸はindexの日付のリストを渡しているだけ、縦軸ではcolumnの商品名を個別で渡している
+
+    ```python:jupyter.py
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+    plt.plot(list(graph_data.index), graph_data["PC-A"], label="PC-A")
+    plt.plot(list(graph_data.index), graph_data["PC-B"], label="PC-B")
+    plt.plot(list(graph_data.index), graph_data["PC-C"], label="PC-C")
+    plt.plot(list(graph_data.index), graph_data["PC-D"], label="PC-D")
+    plt.plot(list(graph_data.index), graph_data["PC-E"], label="PC-E")
+    plt.legend()
     ```
