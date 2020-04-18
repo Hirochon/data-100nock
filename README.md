@@ -38,3 +38,17 @@ Python実践データ分析100本ノックの練習リポジトリだよ！
     ```
 
     1. マージする側のindex数がどうであろうと、軸が一致していれば複製して、代入する！！！(しゅごい！！！)
+
+### さも当たり前のようにSeries同士の掛け算を実現するPandasさん
+
+    ```python:jupyter.py
+    join_data["price"] = join_data["quantity"] * join_data["item_price"]
+    ```
+
+    - これでSeries同士の各index毎の掛け算してます
+
+### sumメソッドでSeriesの合計値だせる！
+
+    ```python:jupyter.py
+    print(join_data["price"].sum())
+    ```
