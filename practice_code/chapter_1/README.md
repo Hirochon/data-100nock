@@ -11,7 +11,7 @@
 - [describe()にて数値データのを見いていく！](#describeにて数値データのを見いていく)
 - [日付の最大最小も参照できるよ](#日付の最大最小も参照できるよ)
 - [dtypesでDFのカラム毎で型を出力してくれる](#dtypesでDFのカラム毎で型を出力してくれる)
-- [datetime型への変換→dt.strftimeメソッドを使ったデータ操作](#datetime型への変換→dtstrftimeメソッドを使ったデータ操作)
+- [datetime型への変換→dt.strftimeメソッドを使ったデータ操作](#datetime型への変換dtstrftimeメソッドを使ったデータ操作)
 - [groupbyを用いてデータをまとめる](#groupbyを用いてデータをまとめる)
 
 ## 気になったとこ詳細リスト
