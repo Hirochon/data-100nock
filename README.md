@@ -9,3 +9,5 @@ Python実践データ分析100本ノックの練習リポジトリだよ！
 `concat`, `merge`, `sum`, `isnull`, `describe`, `min()`, `max()`, `dtypes`, `to_datetime`, `groupby`, `pivot_table`
 ### MatPlotLib
 `pyplot.plot`
+### datetime
+`strftime`
