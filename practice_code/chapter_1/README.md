@@ -2,14 +2,17 @@
 １章で気になった所や感銘した所をまとめています。
 
 ## 目次
-1. [pd.concatの引数について(縦か横に結合(ユニオン)するよ！！)](#pdconcatの引数について縦か横に結合ユニオンするよ)
-2. [pd.mergeの引数について(横に主軸を決めてマージするよ！)](#pdmergeの引数について横に主軸を決めてマージするよ)
-3. [pd.mergeすげえ…(これデータへのリテラシー高くないと使えないよねw)](#pdmergeすげえこれデータへのリテラシー高くないと使えないよねw)
-4. [さも当たり前のようにSeries同士の掛け算を実現するPandasさん](#さも当たり前のようにSeries同士の掛け算を実現するPandasさん)
-5. [sumメソッドでSeriesの合計値だせる！](#sumメソッドでSeriesの合計値だせる)
-6. [isnull()使ってPandasで欠損値を見つけに行こう！](#isnull使ってPandasで欠損値を見つけに行こう)
-7. [describe()にて数値データのを見いていく！](#describeにて数値データのを見いていく)
-8. [日付の最大最小も参照できるよ](#日付の最大最小も参照できるよ)
+- [pd.concatの引数について(縦か横に結合(ユニオン)するよ！！)](#pdconcatの引数について縦か横に結合ユニオンするよ)
+- [pd.mergeの引数について(横に主軸を決めてマージするよ！)](#pdmergeの引数について横に主軸を決めてマージするよ)
+- [pd.mergeすげえ…(これデータへのリテラシー高くないと使えないよねw)](#pdmergeすげえこれデータへのリテラシー高くないと使えないよねw)
+- [さも当たり前のようにSeries同士の掛け算を実現するPandasさん](#さも当たり前のようにSeries同士の掛け算を実現するPandasさん)
+- [sumメソッドでSeriesの合計値だせる！](#sumメソッドでSeriesの合計値だせる)
+- [isnull()使ってPandasで欠損値を見つけに行こう！](#isnull使ってPandasで欠損値を見つけに行こう)
+- [describe()にて数値データのを見いていく！](#describeにて数値データのを見いていく)
+- [日付の最大最小も参照できるよ](#日付の最大最小も参照できるよ)
+- [dtypesでDFのカラム毎で型を出力してくれる](#dtypesでDFのカラム毎で型を出力してくれる)
+- [datetime型への変換→dt.strftimeメソッドを使ったデータ操作](#datetime型への変換→dtstrftimeメソッドを使ったデータ操作)
+- [groupbyを用いてデータをまとめる](#groupbyを用いてデータをまとめる)
 
 ## 気になったとこ詳細リスト
 
@@ -81,7 +84,36 @@
     ```
 
 ### 日付の最大最小も参照できるよ
-
+- 日付の始まりと終わりを出力
     ```python:jupyter.py
     print(join_data["payment_date"].min(), join_data["payment_date"].max())
     ```
+
+### dtypesでDFのカラム毎で型を出力してくれる
+- keyと型を出力してくれる
+
+    ```python:jupyter.py
+    display(join_data.dtypes)
+    ```
+
+### datetime型への変換→dt.strftimeメソッドを使ったデータ操作
+- Seriesのオブジェクト達をdatetime型に変換するPandasの`to_datetime`メソッド
+- Seriesの型をdatetime型にすることで、時系列に関して自由自在なデータ操作が可能に。
+
+    ```python:jupyter.py
+    ## to_datetimeでdatetime型に変換
+    join_data["payment_date"] = pd.to_datetime(join_data["payment_date"])
+    ## 変換したものから、strftimeメソッドを使って年と月だけのオブジェクトを生成
+    join_data["payment_month"] = join_data["payment_date"].dt.strftime("%Y%m")
+    join_data[["payment_date", "payment_month"]].head()
+    ```
+
+### groupbyを用いてデータをまとめる
+- `groupby`は重なっている値を利用して、グループを作成することができる
+- 参照して`price_key`部分だけの合計を出力している
+
+    ```python:jupyter
+    join_data.groupby("payment_month").sum()["price"]
+    ```
+
+
