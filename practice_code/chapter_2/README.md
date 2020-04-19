@@ -4,7 +4,7 @@
 ## 目次
 - [Dockerでのディレクトリの指定法](#Dockerでのディレクトリの指定法)
 - [ExcelデータもPandasで扱えます！](#ExcelデータもPandasで扱えます)
-- [pivot_tableの新発見引数(aggfunc=size,fill_value=0)](#pivot_tableの新発見引数aggfunc=sizefill_value=0)
+- [pivot_tableの新発見引数(aggfunc=size,fill_value=0)](#pivot_tableの新発見引数aggfuncsizefill_value0)
 
 ## 気になったとこ詳細リスト
 
