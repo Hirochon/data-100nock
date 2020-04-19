@@ -4,6 +4,7 @@
 ## 目次
 - [Dockerでのディレクトリの指定法](#Dockerでのディレクトリの指定法)
 - [ExcelデータもPandasで扱えます！](#ExcelデータもPandasで扱えます)
+- [pivot_tableの新発見引数(aggfunc=size,fill_value=0)](#pivot_tableの新発見引数aggfunc=sizefill_value=0)
 
 ## 気になったとこ詳細リスト
 
@@ -21,4 +22,11 @@ chap2_dir = "/code/sample_code/2章/"
 ```python:jupyter.py
 kokyaku_data = pd.read_excel(chap2_dir + "kokyaku_daicho.xlsx")
 kokyaku_data.head()
+```
+
+### pivot_tableの新発見引数(aggfunc=size,fill_value=0)
+- 個数を出力`aggfunc="size"`と、Nanを0でパディング`fill_value=0`
+
+```python:jupyter.py
+res = uriage_data.pivot_table(index="purchase_month", columns="item_name", aggfunc="size", fill_value=0)
 ```
