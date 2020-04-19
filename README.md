@@ -14,4 +14,4 @@ Python実践データ分析100本ノックの練習リポジトリだよ！
 
 ## [2章の学び](https://github.com/Hirochon/data-100nock/blob/master/practice_code/chapter_2/README.md)
 ### Pandas
-`read_excel`, `pivot_table`, `unique`, `upper`, `replace`, `sort_values`
+`read_excel`, `pivot_table`, `unique`, `upper`, `replace`, `sort_values`, `min(skipna=False)`, `loc`, `isnull`, `any`, `max`

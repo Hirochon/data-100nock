@@ -9,6 +9,9 @@
 - [Series.str.upper()でアルファベットを全て小文字→大文字変換する](#Seriesstrupperでアルファベットを全て小文字大文字変換する)
 - [Series.str.replace()で全角空白だろうが半角空白だろうが全て消去する！](#Seriesstrreplaceで全角空白だろうが半角空白だろうが全て消去する)
 - [DataFrame.sort_values()でデータフレームをソートする](#DataFramesort_valuesでデータフレームをソートする)
+- [DFに対してisnull().any()だけでcolumn/indexごとの欠損値の有無が知れる](#DFに対してisnullanyだけでcolumnindexごとの欠損値の有無が知れる)
+- [unique&loc&max&~を使ったデータの作成](#uniquelocmaxを使ったデータの作成)
+- [min(skipna=false)が示すもの](#minskipnafalseが示すもの)
 
 
 ## 気になったとこ詳細リスト
@@ -56,7 +59,7 @@ uriage_data["item_name"] = uriage_data["item_name"].str.upper()
 - `replace(変換対象, 変換後)`で使う。
 - 今回は`" "`と`"　"`を`""`に変換することによって無駄な空白を全て消去
 
-```python;jupyter.py
+```python:jupyter.py
 uriage_data["item_name"] = uriage_data["item_name"].str.replace("　", "")
 uriage_data["item_name"] = uriage_data["item_name"].str.replace(" ", "")
 ```
@@ -65,6 +68,28 @@ uriage_data["item_name"] = uriage_data["item_name"].str.replace(" ", "")
 - `by`でソートする対象を指定
 - `ascending`で昇順(True)・降順(False)を指定。
 
-```python;jupyter.py
+```python:jupyter.py
 uriage_data.sort_values(by=["item_name"], ascending=True)
 ```
+
+### DFに対してisnull().any()だけでcolumn/indexごとの欠損値の有無が知れる
+- `DataFrame.isnull().any()`のメソッドチェーン的な
+- `axis=0`でカラムを指定している
+
+```python:jupyter.py
+uriage_data.isnull().any(axis=0)
+```
+
+### unique&loc&max&~を使ったデータの作成
+1. `True`で値が存在するやつのユニークなリストを作成してfor文
+2. `not flg_is_null`なので欠損値があるもので、trgと一致してるか見て、最大値を取得
+3. 代入！！！
+
+```python:jupyter.py
+for trg in list(uriage_data.loc[flg_is_null, "item_name"].unique()):
+    price = uriage_data.loc[(~flg_is_null) & (uriage_data["item_name"] == trg), "item_price"].max()
+    uriage_data["item_price"].loc[(flg_is_null) & (uriage_data["item_name"]==trg)] = price
+```
+
+## min(skipna=false)が示すもの
+- 最小値を出力するが、もしNaNが合った場合、無視するのか否かを決める
