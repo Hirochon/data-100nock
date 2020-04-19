@@ -4,7 +4,7 @@
 ## 目次
 - [Dockerでのディレクトリの指定法](#Dockerでのディレクトリの指定法)
 - [ExcelデータもPandasで扱えます！](#ExcelデータもPandasで扱えます)
-- [pivot_tableの新発見引数(aggfunc=size,fill_value=0)](#pivot_tableの新発見引数aggfunc=sizefill_value=0)
+- [pivot_tableの新発見引数(aggfunc=size,fill_value=0)](#pivot_tableの新発見引数aggfuncsizefill_value0)
 - [要素の総ユニーク数を一瞬で出すunique+lenの合わせ技](#要素の総ユニーク数を一瞬で出すuniquelenの合わせ技)
 - [Series.str.upper()でアルファベットを全て小文字→大文字変換する](#Seriesstrupperでアルファベットを全て小文字大文字変換する)
 - [Series.str.replace()で全角空白だろうが半角空白だろうが全て消去する！](#Seriesstrreplaceで全角空白だろうが半角空白だろうが全て消去する)
