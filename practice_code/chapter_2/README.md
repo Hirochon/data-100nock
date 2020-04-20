@@ -111,3 +111,13 @@ print(flg_is_serial.sum())
 ```python:jupyter.py
 kokyaku_data["登録日"] = pd.concat([fromSerial, fromString])
 ```
+
+### mergeによるデータの結合
+1. まず`pd.merge`して結合させる。
+2. 引数`left_on="customer_name"`と`right_on"顧客名"`でそれぞれのデータの基準を指定
+3. dropにて`axis=1`を設定して、`customer_name`のカラムを指定
+
+```python:jupyter.py
+join_data = pd.merge(uriage_data, kokyaku_data, left_on="customer_name", right_on="顧客名", how="left")
+join_data = join_data.drop("customer_name", axis=1)
+```
