@@ -14,6 +14,7 @@
 - [min(skipna=false)が示すもの](#minskipnafalseが示すもの)
 - [strへ変換後のstr.isdigit()で数値データかどうか判断](#strへ変換後のstrisdigitで数値データかどうか判断)
 - [concatでDF同士を繋げる](#concatでDF同士を繋げる)
+- [だんだんpivot_tableが見慣れてきた](#だんだんpivot_tableが見慣れてきた)
 
 
 ## 気になったとこ詳細リスト
@@ -120,4 +121,13 @@ kokyaku_data["登録日"] = pd.concat([fromSerial, fromString])
 ```python:jupyter.py
 join_data = pd.merge(uriage_data, kokyaku_data, left_on="customer_name", right_on="顧客名", how="left")
 join_data = join_data.drop("customer_name", axis=1)
+```
+
+### だんだんpivot_tableが見慣れてきた
+- 今回は一番すごかったのは売上金額奴
+1. `index="purchase_month"`で縦軸基準(購入した月)を決める, `columns="item_name"`で横軸基準(商品名)を決める
+2. `values="item_price"`で表内に挿入する値を決める, `aggfunc="sum"`で要素数でなく値の合計で入れる。
+
+```python:jupyter.py
+byPrice = import_data.pivot_table(index="purchase_month", columns="item_name", values="item_price", aggfunc="sum", fill_value=0)
 ```
