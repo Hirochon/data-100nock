@@ -12,6 +12,8 @@
 - [DFに対してisnull().any()だけでcolumn/indexごとの欠損値の有無が知れる](#DFに対してisnullanyだけでcolumnindexごとの欠損値の有無が知れる)
 - [unique&loc&max&~を使ったデータの作成](#uniquelocmaxを使ったデータの作成)
 - [min(skipna=false)が示すもの](#minskipnafalseが示すもの)
+- [strへ変換後のstr.isdigit()で数値データかどうか判断](#strへ変換後のstrisdigitで数値データかどうか判断)
+- [concatでDF同士を繋げる](#concatでDF同士を繋げる)
 
 
 ## 気になったとこ詳細リスト
@@ -91,5 +93,21 @@ for trg in list(uriage_data.loc[flg_is_null, "item_name"].unique()):
     uriage_data["item_price"].loc[(flg_is_null) & (uriage_data["item_name"]==trg)] = price
 ```
 
-## min(skipna=false)が示すもの
+### min(skipna=false)が示すもの
 - 最小値を出力するが、もしNaNが合った場合、無視するのか否かを決める
+
+### strへ変換後のstr.isdigit()で数値データかどうか判断
+1. `astypeメソッド`にてstr型へ変換
+2. `str.isdigitメソッド`で数値のみか否かでBool値へ変換
+3. `sumメソッド`で`True`の合計数を算出
+
+```python:jupyter.py
+flg_is_serial = kokyaku_data["登録日"].astype("str").str.isdigit()
+print(flg_is_serial.sum())
+```
+
+### concatでDF同士を繋げる
+
+```python:jupyter.py
+kokyaku_data["登録日"] = pd.concat([fromSerial, fromString])
+```
