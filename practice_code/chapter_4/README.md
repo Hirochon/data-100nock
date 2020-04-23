@@ -7,6 +7,8 @@
 - [クラスタリングした結果をgroupbyで分析](#クラスタリングした結果をgroupbyで分析)
 - [次元削除→主成分分析PCA](#次元削除主成分分析PCA)
 - [勝手に色分け！？plt.scatter](#勝手に色分け！？plt.scatter)
+- [pd.dropna後にreset_index(drop=True)で初期化](#pddropna後にreset_indexdropTrueで初期化)
+
 
 ## 気になったとこ詳細リスト
 
@@ -72,4 +74,14 @@ import matplotlib.pyplot as plt
 for i in customer_clustering["cluster"].unique():
     tmp = pca_df.loc[pca_df["cluster"]==i]
     plt.scatter(tmp[0], tmp[1])
+```
+
+### pd.dropna後にreset_index(drop=True)で初期化
+- データ内に欠損値がある場合に`dropna`にてindexごと消し去る！
+- 全て消し去った後に`reset_index`にてindexを1から振り直す
+
+```python:jupyter.py
+predict_data = predict_data.dropna()
+predict_data = predict_data.reset_index(drop=True)
+predict_data.head()
 ```
