@@ -5,6 +5,8 @@
 - [遂にきましたScikit-learn!](#遂にきましたScikit-learn)
 - [KMeans(教師なし学習)でグルーピング！](#KMeans教師なし学習でグルーピング)
 - [クラスタリングした結果をgroupbyで分析](#クラスタリングした結果をgroupbyで分析)
+- [次元削除→主成分分析PCA](#次元削除主成分分析PCA)
+- [勝手に色分け！？plt.scatter](#勝手に色分け！？plt.scatter)
 
 ## 気になったとこ詳細リスト
 
@@ -48,4 +50,26 @@ customer_clustering.groupby('cluster').count()
 customer_clustering.groupby("cluster").mean()
 ```
 
-### 
+### 次元削除→主成分分析PCA
+- 初めて`sklern.decomposition.PCA`を使ってるよw
+
+```python:jupyter.py
+from sklearn.decomposition import PCA
+X = customer_clustering_sc
+pca = PCA(n_components=2)   # 2次元を指定してモデル定義
+pca.fit(X)  # ①ここで次元削除
+x_pca = pca.transform(X)    # ①ここで次元削除
+pca_df = pd.DataFrame(x_pca)
+pca_df["cluster"] = customer_clustering["cluster"]  # クラスタリング結果を付与している
+```
+
+### 勝手に色分け！？plt.scatter
+- 多分for文を回してプロットしていくと、勝手に色分けてくれるのかな？
+
+```python:jupyter.py
+import matplotlib.pyplot as plt
+%matplotlib inline
+for i in customer_clustering["cluster"].unique():
+    tmp = pca_df.loc[pca_df["cluster"]==i]
+    plt.scatter(tmp[0], tmp[1])
+```
