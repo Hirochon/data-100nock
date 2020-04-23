@@ -4,6 +4,7 @@
 ## 目次
 - [遂にきましたScikit-learn!](#遂にきましたScikit-learn)
 - [KMeans(教師なし学習)でグルーピング！](#KMeans教師なし学習でグルーピング)
+- [クラスタリングした結果をgroupbyで分析](#クラスタリングした結果をgroupbyで分析)
 
 ## 気になったとこ詳細リスト
 
@@ -32,3 +33,19 @@ customer_clustering["cluster"] = clusters.labels_
 print(customer_clustering["cluster"].unique())
 customer_clustering.head()
 ```
+
+### クラスタリングした結果をgroupbyで分析
+1. countにてクラスタリングされた人の数を出す
+
+```python:jupyter.py
+customer_clustering.columns = ["月内平均値", "月内中央値", "月内最大値", "月内最小値", "会員期間", 'cluster']
+customer_clustering.groupby('cluster').count()
+```
+
+2. meanにてそれぞれの中央値を算出
+
+```python:jupyter.py
+customer_clustering.groupby("cluster").mean()
+```
+
+### 
