@@ -85,3 +85,22 @@ predict_data = predict_data.dropna()
 predict_data = predict_data.reset_index(drop=True)
 predict_data.head()
 ```
+
+### sklearnの線形回帰LinearRegressionでモデル作成
+- パラメータは一切使って無い
+- 学習75%,テスト25%でsplitしてる
+
+```python:jupyter.py
+from sklearn import linear_model
+import sklearn.model_selection
+model = linear_model.LinearRegression()
+X = predict_data[["count_0", "count_1", "count_2", "count_3", "count_4", "count_5", "period"]]
+y = predict_data["count_pred"]
+X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y)
+model.fit(X_train, y_train)
+print(model.score(X_train, y_train))
+print(model.score(X_test, y_test))
+# ↓出力結果
+# 0.6138446522066651
+# 0.5872140039923792
+```
