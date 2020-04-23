@@ -8,6 +8,7 @@
 - [次元削除→主成分分析PCA](#次元削除主成分分析PCA)
 - [勝手に色分け！？plt.scatter](#勝手に色分け！？plt.scatter)
 - [pd.dropna後にreset_index(drop=True)で初期化](#pddropna後にreset_indexdropTrueで初期化)
+- [sklearnの線形回帰LinearRegressionでモデル作成](#sklearnの線形回帰LinearRegressionでモデル作成)
 
 
 ## 気になったとこ詳細リスト
